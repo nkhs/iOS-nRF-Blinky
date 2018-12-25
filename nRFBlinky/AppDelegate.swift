@@ -8,7 +8,9 @@
 
 import UIKit
 import CoreBluetooth
-
+import IQKeyboardManagerSwift
+import Firebase
+import FirebaseDatabase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -18,6 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         centralManager = CBCentralManager()
+        
+        IQKeyboardManager.shared.enable = true
+        
+        FirebaseApp.configure()
+        
         return true
     }
 
@@ -45,4 +52,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+var counter = 0
+public func getCurrentMillis() -> Int64 {
+    return Int64(Date().timeIntervalSince1970 * 1000)
+}
+func firebaseLog(_ message:String) {
+    let ref = Database.database().reference()
+    ref.child("netKnight").child(getMacAddress()).child("\(getCurrentMillis())_\(counter)").setValue( message)
+    counter += 1
+}
 
+func getMacAddress() -> String {
+    return UIDevice.current.identifierForVendor!.uuidString
+}

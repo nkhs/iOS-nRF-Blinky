@@ -13,29 +13,68 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
     
     //MARK: - Outlets and Actions
     
-    @IBOutlet weak var toggleBtnOutlet: UIButton!
-    @IBOutlet weak var btnLevelOutlet: UIButton!
-    @IBOutlet weak var toggleRandomBtnOutlet: UIButton!
+    @IBAction func switchChanged(_ sender: Any) {
+        isChecked = toggleSwitch.isOn
+        updateButton(true)
+    }
     
+    @IBOutlet weak var randomSwitch: UISwitch!
+    @IBOutlet weak var randomBtnOutlet: UIButton!
+    @IBOutlet weak var toggleSwitch: UISwitch!
+    @IBOutlet weak var labelOutlet: UILabel!
+
+    @IBOutlet weak var btnLevelOutlet: UIButton!
+
     var isChecked = false
     var isCheckedRandom = false
     
-    @IBAction func onToggleStart(_ sender: Any) {
-        isChecked = !isChecked
+    func updateButton(_ isUpdate:Bool = false, _ fromButton:Bool = false){
         if isChecked {
-            if blinkyPeripheral != nil {
-                self.blinkyPeripheral.writeMode(0x1)
+            if blinkyPeripheral != nil && isUpdate {
+                blinkyPeripheral.writeMode(0x1)
             }
-            toggleBtnOutlet.setTitle("Manual Stop", for:.highlighted)
-            toggleRandomBtnOutlet.isEnabled = false
-            toggleRandomBtnOutlet.backgroundColor = UIColor.init(red: 0xB7 / 0xFF, green:  0xB7 / 0xFF, blue:  0xB7 / 0xFF, alpha: 1)
+            if fromButton {
+                toggleSwitch.setOn(true, animated: false)
+            }
+            randomBtnOutlet.disable()
+            randomSwitch.isEnabled = false
         } else {
-            if blinkyPeripheral != nil {
-                self.blinkyPeripheral.writeMode(0x2)
+            if blinkyPeripheral != nil && isUpdate {
+                blinkyPeripheral.writeMode(0x2)
             }
-            toggleBtnOutlet.setTitle("Manual Start", for:.normal)
-            toggleRandomBtnOutlet.isEnabled = true
-            toggleRandomBtnOutlet.backgroundColor = UIColor.init(red: 0x15 / 0xFF, green:  0x9B / 0xFF, blue:  0xE1 / 0xFF, alpha: 1)
+
+            if fromButton {
+                toggleSwitch.setOn(false, animated: false)
+            }
+            randomBtnOutlet.enable()
+            randomSwitch.isEnabled = true
+        }
+    }
+    
+    func updateRandomButton(_ isUpdate:Bool = false, _ fromButton:Bool = false){
+        if isCheckedRandom {
+            if blinkyPeripheral != nil && isUpdate {
+                blinkyPeripheral.writeMode(0x3)
+            }
+            toggleSwitch.isEnabled = false
+            toggleSwitch.setOn(false, animated: false)
+            btnLevelOutlet.disable()
+            
+            if fromButton {
+                randomSwitch.setOn(true, animated: false)
+            }
+        }else {
+            if blinkyPeripheral != nil && isUpdate {
+                blinkyPeripheral.writeMode(0x4)
+            }
+            
+            toggleSwitch.isEnabled = true
+            btnLevelOutlet.enable()
+            
+            if fromButton {
+                randomSwitch.setOn(false, animated: false)
+            }
+            
         }
     }
     
@@ -43,39 +82,21 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
         showLevelList()
     }
     @IBAction func onToggleRandomStart(_ sender: Any) {
-        isCheckedRandom = !isCheckedRandom
-        if isCheckedRandom {
-            if blinkyPeripheral != nil {
-                self.blinkyPeripheral.writeMode(0x3)
-            }
-            toggleBtnOutlet.isEnabled = false
-            toggleBtnOutlet.backgroundColor = UIColor.init(red: 0xB7 / 0xFF, green:  0xB7 / 0xFF, blue:  0xB7 / 0xFF, alpha: 1)
-            
-            btnLevelOutlet.isEnabled = false
-            btnLevelOutlet.backgroundColor = UIColor.init(red: 0xB7 / 0xFF, green:  0xB7 / 0xFF, blue:  0xB7 / 0xFF, alpha: 1)
-            
-            toggleRandomBtnOutlet.setTitle("Random Stop", for:.highlighted)
-        }else {
-            if blinkyPeripheral != nil {
-                self.blinkyPeripheral.writeMode(0x4)
-            }
-            
-            toggleBtnOutlet.isEnabled = true
-            toggleBtnOutlet.backgroundColor = UIColor.init(red: 0x15 / 0xFF, green:  0x9B / 0xFF, blue:  0xE1 / 0xFF, alpha: 1)
-            
-            btnLevelOutlet.isEnabled = true
-            btnLevelOutlet.backgroundColor = UIColor.init(red: 0x15 / 0xFF, green:  0x9B / 0xFF, blue:  0xE1 / 0xFF, alpha: 1)
-            
-            toggleRandomBtnOutlet.setTitle("Random Start", for:.normal)
-        }
+        print("Random1", randomSwitch.isOn)
     }
+    @IBAction func randomSwitchChanged(_ sender: Any) {
+        isCheckedRandom = randomSwitch.isOn
+        updateRandomButton(true)
+        print("Random2", randomSwitch.isOn)
+    }
+
     //MARK: - Properties
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
 
     private var hapticGenerator : NSObject? //Only available on iOS 10 and above
-    private var blinkyPeripheral : BlinkyPeripheral!
+    
     private var centralManager : CBCentralManager!
     
     //MARK: - Implementation
@@ -97,43 +118,43 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
         
         alert.addAction(UIAlertAction(title: "Level 1", style: .default, handler: { (action) in
             self.btnLevelOutlet.setTitle("Level 1", for:.normal)
-            self.blinkyPeripheral.writeLevel(0x1)
+            blinkyPeripheral.writeLevel(0x1)
         }))
         alert.addAction(UIAlertAction(title: "Level 2", style: .default, handler: { (action) in
             self.btnLevelOutlet.setTitle("Level 2", for:.normal)
-            self.blinkyPeripheral.writeLevel(0x2)
+            blinkyPeripheral.writeLevel(0x2)
         }))
         alert.addAction(UIAlertAction(title: "Level 3", style: .default, handler: { (action) in
             self.btnLevelOutlet.setTitle("Level 3", for:.normal)
-            self.blinkyPeripheral.writeLevel(0x3)
+            blinkyPeripheral.writeLevel(0x3)
         }))
         alert.addAction(UIAlertAction(title: "Level 4", style: .default, handler: { (action) in
             self.btnLevelOutlet.setTitle("Level 4", for:.normal)
-            self.blinkyPeripheral.writeLevel(0x4)
+            blinkyPeripheral.writeLevel(0x4)
         }))
         alert.addAction(UIAlertAction(title: "Level 5", style: .default, handler: { (action) in
             self.btnLevelOutlet.setTitle("Level 5", for:.normal)
-            self.blinkyPeripheral.writeLevel(0x5)
+            blinkyPeripheral.writeLevel(0x5)
         }))
         alert.addAction(UIAlertAction(title: "Level 6", style: .default, handler: { (action) in
             self.btnLevelOutlet.setTitle("Level 6", for:.normal)
-            self.blinkyPeripheral.writeLevel(0x6)
+            blinkyPeripheral.writeLevel(0x6)
         }))
         alert.addAction(UIAlertAction(title: "Level 7", style: .default, handler: { (action) in
             self.btnLevelOutlet.setTitle("Level 7", for:.normal)
-            self.blinkyPeripheral.writeLevel(0x7)
+            blinkyPeripheral.writeLevel(0x7)
         }))
         alert.addAction(UIAlertAction(title: "Level 8", style: .default, handler: { (action) in
             self.btnLevelOutlet.setTitle("Level 8", for:.normal)
-            self.blinkyPeripheral.writeLevel(0x8)
+            blinkyPeripheral.writeLevel(0x8)
         }))
         alert.addAction(UIAlertAction(title: "Level 9", style: .default, handler: { (action) in
             self.btnLevelOutlet.setTitle("Level 9", for:.normal)
-            self.blinkyPeripheral.writeLevel(0x9)
+            blinkyPeripheral.writeLevel(0x9)
         }))
         alert.addAction(UIAlertAction(title: "Level 10", style: .default, handler: { (action) in
             self.btnLevelOutlet.setTitle("Level 10", for:.normal)
-            self.blinkyPeripheral.writeLevel(0xa)
+            blinkyPeripheral.writeLevel(0xa)
         }))
         
         self.present(alert, animated: true, completion: nil)
@@ -149,42 +170,45 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
         
         
         print("adding button notification and led write callback handlers")
-        blinkyPeripheral.setButtonCallback { (isPressed) -> (Void) in
+        blinkyPeripheral.setModeCallback { (mode) -> (Void) in
             DispatchQueue.main.async {
-                if isPressed {
-//                    self.buttonStateLabel.text = "PRESSED"
-                } else {
-//                    self.buttonStateLabel.text = "RELEASED"
+                switch mode {
+                case 0x01:
+                    self.isChecked = true
+                    self.updateButton(false, true)
+                    self.labelOutlet.isHidden = false
+                    break
+                case 0x02:
+                    self.isChecked = false
+                    self.updateButton(false, true)
+                    self.labelOutlet.isHidden = true
+                    break
+                case 0x03:
+                    self.isCheckedRandom = true
+                    self.updateRandomButton(false, true)
+                    self.labelOutlet.isHidden = true
+                    break
+                case 0x04:
+                    self.isCheckedRandom = false
+                    self.updateRandomButton(false, true)
+                    self.labelOutlet.isHidden = true
+                    break
+                default:self.labelOutlet.isHidden = true
+                    break
                 }
-                self.buttonTapHapticFeedback()
             }
         }
         
-        blinkyPeripheral.setLEDCallback { (isOn) -> (Void) in
+        blinkyPeripheral.setLevelCallback { (level) -> (Void) in
             DispatchQueue.main.async {
-                
+                self.btnLevelOutlet.setTitle("Level \(level)", for: .normal)
             }
         }
     }
     
     private func roundButton(_ button:UIButton){
-//        button.backgroundColor = .clear
         let height = button.frame.height
         button.layer.cornerRadius = height / 4
-        
-//        button.backgroundColor = [UIColor colorWithRed:(200.0f/255.0f) green:0.0 blue:0.0 alpha:1.0];
-        
-//        button.layer.cornerRadius = 3.0;
-        
-//        button.layer.borderWidth = 2.0;
-//        button.layer.borderColor = [[UIColor clearColor] CGColor];
-        
-//        button.layer.shadowColor = UIColor.init(red: 100 / 0xFF, green:  0x00 / 0xFF, blue:  0x00 / 0xFF, alpha: 1).cgColor
-//        button.layer.shadowOpacity = 1.0
-//        button.layer.shadowRadius = 1.0
-//        button.layer.shadowOffset = CGSize(width:0, height:3)
-//        button.layer.borderWidth = 1
-//        button.layer.borderColor = UIColor.black.cgColor
     }
 
     
@@ -192,9 +216,12 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        roundButton(toggleBtnOutlet)
         roundButton(btnLevelOutlet)
-        roundButton(toggleRandomBtnOutlet)
+        roundButton(randomBtnOutlet)
+        toggleSwitch.transform(isZoom:true)
+        
+        randomSwitch.transform(isZoom:true)
+        
         
         guard blinkyPeripheral != nil else {
             return
@@ -210,12 +237,12 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
 
     override func viewDidDisappear(_ animated: Bool) {
         print("removing button notification and led write callback handlers")
-        blinkyPeripheral.removeLEDCallback()
-        blinkyPeripheral.removeButtonCallback()
-        
-        if blinkyPeripheral.basePeripheral.state == .connected {
-            centralManager.cancelPeripheralConnection(blinkyPeripheral.basePeripheral)
-        }
+//        blinkyPeripheral.removeLEDCallback()
+//        blinkyPeripheral.removeButtonCallback()
+//        
+//        if blinkyPeripheral.basePeripheral.state == .connected {
+//            centralManager.cancelPeripheralConnection(blinkyPeripheral.basePeripheral)
+//        }
         
         super.viewDidDisappear(animated)
     }
@@ -253,3 +280,82 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
         }
     }
 }
+
+extension UIButton {
+    func setBackgroundColor(color: UIColor, forState: UIControlState) {
+        UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
+        UIGraphicsGetCurrentContext()!.setFillColor(color.cgColor)
+        UIGraphicsGetCurrentContext()!.fill(CGRect(x: 0, y: 0, width: 1, height: 1))
+        let colorImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        self.setBackgroundImage(colorImage, for: forState)
+    }
+    func selected(){
+        backgroundColor = UIColor(rgb: 0x3CC5EF).darker()
+    }
+    func unselected(){
+        backgroundColor = UIColor(rgb: 0x3CC5EF)
+    }
+    func enable(){
+        isEnabled = true
+        backgroundColor = UIColor(rgb: 0x3CC5EF)
+    }
+    func disable(){
+        isEnabled = false
+        backgroundColor = UIColor(rgb: 0xB7B7B7)
+    }
+}
+extension UIColor {
+    convenience init(red: Int, green: Int, blue: Int) {
+        assert(red >= 0 && red <= 255, "Invalid red component")
+        assert(green >= 0 && green <= 255, "Invalid green component")
+        assert(blue >= 0 && blue <= 255, "Invalid blue component")
+        
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+    
+    convenience init(rgb: Int) {
+        self.init(
+            red: (rgb >> 16) & 0xFF,
+            green: (rgb >> 8) & 0xFF,
+            blue: rgb & 0xFF
+        )
+    }
+}
+
+extension UIColor {
+    
+    func lighter(by percentage:CGFloat=30.0) -> UIColor? {
+        return self.adjust(by: abs(percentage) )
+    }
+    
+    func darker(by percentage:CGFloat=30.0) -> UIColor? {
+        return self.adjust(by: -1 * abs(percentage) )
+    }
+    
+    func adjust(by percentage:CGFloat=30.0) -> UIColor? {
+        var r:CGFloat=0, g:CGFloat=0, b:CGFloat=0, a:CGFloat=0;
+        if(self.getRed(&r, green: &g, blue: &b, alpha: &a)){
+            return UIColor(red: min(r + percentage/100, 1.0),
+                           green: min(g + percentage/100, 1.0),
+                           blue: min(b + percentage/100, 1.0),
+                           alpha: a)
+        }else{
+            return nil
+        }
+    }
+}
+
+extension UISwitch {
+    func transform(isZoom:Bool = false){
+        tintColor = UIColor(rgb:0xB7B7B7)
+        layer.cornerRadius = 16
+        backgroundColor = UIColor(rgb:0xB7B7B7)
+        if isZoom {
+            transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+        }
+    }
+}
+
+var blinkyPeripheral : BlinkyPeripheral!

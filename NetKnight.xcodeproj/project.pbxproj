@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D709F7821D829900637D7B0 /* Pods_NetKnightUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 880AE4C76288BD0A60977792 /* Pods_NetKnightUITests.framework */; };
 		30B664451FCD6E65003C8B55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B664441FCD6E65003C8B55 /* AppDelegate.swift */; };
 		30B6644A1FCD6E65003C8B55 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30B664481FCD6E65003C8B55 /* Main.storyboard */; };
 		30B6644C1FCD6E65003C8B55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30B6644B1FCD6E65003C8B55 /* Assets.xcassets */; };
@@ -18,6 +19,12 @@
 		30B664851FCDA0FC003C8B55 /* BlinkyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B664841FCDA0FC003C8B55 /* BlinkyTableViewCell.swift */; };
 		30B664881FCDA2E0003C8B55 /* BlinkyPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B664871FCDA2E0003C8B55 /* BlinkyPeripheral.swift */; };
 		30B6648B1FD1590A003C8B55 /* BlinkyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B6648A1FD1590A003C8B55 /* BlinkyViewController.swift */; };
+		4289E475D237173EB419262E /* Pods_NetKnightTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D72D9767EF848C7777ECC5EB /* Pods_NetKnightTests.framework */; };
+		84078E4B212486F700F3B479 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84078E4A212486F700F3B479 /* GoogleService-Info.plist */; };
+		84078E4F2124912E00F3B479 /* Preference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84078E4E2124912E00F3B479 /* Preference.swift */; };
+		84237DAE21230FDB009433EF /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84237DAD21230FDB009433EF /* Alerts.swift */; };
+		84FC31D32118A9F600C9894C /* RandomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FC31D22118A9F600C9894C /* RandomViewController.swift */; };
+		8E6B28A3334F9BE7D9A59A3C /* Pods_NetKnight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41F0FEB3684D8BA5A51428F3 /* Pods_NetKnight.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12FDAAF25D38BD84746858ED /* Pods-NetKnightUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetKnightUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NetKnightUITests/Pods-NetKnightUITests.release.xcconfig"; sourceTree = "<group>"; };
+		2F5BF8565EAD86C55124802D /* Pods-NetKnightTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetKnightTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NetKnightTests/Pods-NetKnightTests.debug.xcconfig"; sourceTree = "<group>"; };
 		30B664411FCD6E65003C8B55 /* NetKnight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetKnight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30B664441FCD6E65003C8B55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30B664491FCD6E65003C8B55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -55,7 +64,18 @@
 		30B664841FCDA0FC003C8B55 /* BlinkyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlinkyTableViewCell.swift; sourceTree = "<group>"; };
 		30B664871FCDA2E0003C8B55 /* BlinkyPeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlinkyPeripheral.swift; sourceTree = "<group>"; };
 		30B6648A1FD1590A003C8B55 /* BlinkyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlinkyViewController.swift; sourceTree = "<group>"; };
+		322B75CB64D86A1A4B44E7FE /* Pods-NetKnightTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetKnightTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NetKnightTests/Pods-NetKnightTests.release.xcconfig"; sourceTree = "<group>"; };
+		37750AECAECEDC94DD7E109D /* Pods-NetKnight.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetKnight.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NetKnight/Pods-NetKnight.debug.xcconfig"; sourceTree = "<group>"; };
+		41F0FEB3684D8BA5A51428F3 /* Pods_NetKnight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetKnight.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84078E4A212486F700F3B479 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		84078E4E2124912E00F3B479 /* Preference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preference.swift; sourceTree = "<group>"; };
 		840AED2D210C747C00484297 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		84237DAD21230FDB009433EF /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		84FC31D22118A9F600C9894C /* RandomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomViewController.swift; sourceTree = "<group>"; };
+		880AE4C76288BD0A60977792 /* Pods_NetKnightUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetKnightUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D72D9767EF848C7777ECC5EB /* Pods_NetKnightTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetKnightTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E847D27A9A4AAA18113E850B /* Pods-NetKnight.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetKnight.release.xcconfig"; path = "Pods/Target Support Files/Pods-NetKnight/Pods-NetKnight.release.xcconfig"; sourceTree = "<group>"; };
+		EAAC67BD1B0B65842F44F39A /* Pods-NetKnightUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetKnightUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NetKnightUITests/Pods-NetKnightUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E6B28A3334F9BE7D9A59A3C /* Pods_NetKnight.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4289E475D237173EB419262E /* Pods_NetKnightTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,12 +99,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D709F7821D829900637D7B0 /* Pods_NetKnightUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		178270FE130FA0CCC582C375 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				37750AECAECEDC94DD7E109D /* Pods-NetKnight.debug.xcconfig */,
+				E847D27A9A4AAA18113E850B /* Pods-NetKnight.release.xcconfig */,
+				2F5BF8565EAD86C55124802D /* Pods-NetKnightTests.debug.xcconfig */,
+				322B75CB64D86A1A4B44E7FE /* Pods-NetKnightTests.release.xcconfig */,
+				EAAC67BD1B0B65842F44F39A /* Pods-NetKnightUITests.debug.xcconfig */,
+				12FDAAF25D38BD84746858ED /* Pods-NetKnightUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		24FAE022D9E27BC1237DCB22 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				41F0FEB3684D8BA5A51428F3 /* Pods_NetKnight.framework */,
+				D72D9767EF848C7777ECC5EB /* Pods_NetKnightTests.framework */,
+				880AE4C76288BD0A60977792 /* Pods_NetKnightUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		30B664381FCD6E65003C8B55 = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +136,8 @@
 				30B664581FCD6E65003C8B55 /* nRFBlinkyTests */,
 				30B664631FCD6E65003C8B55 /* nRFBlinkyUITests */,
 				30B664421FCD6E65003C8B55 /* Products */,
+				178270FE130FA0CCC582C375 /* Pods */,
+				24FAE022D9E27BC1237DCB22 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,7 +161,9 @@
 				30B664481FCD6E65003C8B55 /* Main.storyboard */,
 				30B6644B1FCD6E65003C8B55 /* Assets.xcassets */,
 				30B6644D1FCD6E65003C8B55 /* LaunchScreen.storyboard */,
+				84078E4A212486F700F3B479 /* GoogleService-Info.plist */,
 				30B664501FCD6E65003C8B55 /* Info.plist */,
+				84078E4E2124912E00F3B479 /* Preference.swift */,
 			);
 			path = nRFBlinky;
 			sourceTree = "<group>";
@@ -139,6 +189,7 @@
 		30B664791FCD722A003C8B55 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				84FC31D12118A9DF00C9894C /* RandomView */,
 				30B664891FD15900003C8B55 /* BlinkyView */,
 				30B664811FCDA0DE003C8B55 /* ScannerView */,
 				30B6647F1FCD9638003C8B55 /* RootViewController.swift */,
@@ -159,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				30B664871FCDA2E0003C8B55 /* BlinkyPeripheral.swift */,
+				84237DAD21230FDB009433EF /* Alerts.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -179,6 +231,14 @@
 			path = fonts;
 			sourceTree = "<group>";
 		};
+		84FC31D12118A9DF00C9894C /* RandomView */ = {
+			isa = PBXGroup;
+			children = (
+				84FC31D22118A9F600C9894C /* RandomViewController.swift */,
+			);
+			path = RandomView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -186,9 +246,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 30B664691FCD6E65003C8B55 /* Build configuration list for PBXNativeTarget "NetKnight" */;
 			buildPhases = (
+				F17D5F0C10771066B4D2435B /* [CP] Check Pods Manifest.lock */,
 				30B6643D1FCD6E65003C8B55 /* Sources */,
 				30B6643E1FCD6E65003C8B55 /* Frameworks */,
 				30B6643F1FCD6E65003C8B55 /* Resources */,
+				D7BB62FD71214EFA1B1C56FD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -203,6 +265,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 30B6646C1FCD6E65003C8B55 /* Build configuration list for PBXNativeTarget "NetKnightTests" */;
 			buildPhases = (
+				0CEE07F989DDEEFCE84E7A7C /* [CP] Check Pods Manifest.lock */,
 				30B664511FCD6E65003C8B55 /* Sources */,
 				30B664521FCD6E65003C8B55 /* Frameworks */,
 				30B664531FCD6E65003C8B55 /* Resources */,
@@ -221,6 +284,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 30B6646F1FCD6E65003C8B55 /* Build configuration list for PBXNativeTarget "NetKnightUITests" */;
 			buildPhases = (
+				E15158DA7CDDD84950460997 /* [CP] Check Pods Manifest.lock */,
 				30B6645C1FCD6E65003C8B55 /* Sources */,
 				30B6645D1FCD6E65003C8B55 /* Frameworks */,
 				30B6645E1FCD6E65003C8B55 /* Resources */,
@@ -292,6 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30B6644F1FCD6E65003C8B55 /* LaunchScreen.storyboard in Resources */,
+				84078E4B212486F700F3B479 /* GoogleService-Info.plist in Resources */,
 				30B6644C1FCD6E65003C8B55 /* Assets.xcassets in Resources */,
 				30B6644A1FCD6E65003C8B55 /* Main.storyboard in Resources */,
 			);
@@ -313,6 +378,91 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0CEE07F989DDEEFCE84E7A7C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NetKnightTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D7BB62FD71214EFA1B1C56FD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-NetKnight/Pods-NetKnight-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DefaultsKit/DefaultsKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DefaultsKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NetKnight/Pods-NetKnight-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E15158DA7CDDD84950460997 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NetKnightUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F17D5F0C10771066B4D2435B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NetKnight-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		30B6643D1FCD6E65003C8B55 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -320,9 +470,12 @@
 			files = (
 				30B664851FCDA0FC003C8B55 /* BlinkyTableViewCell.swift in Sources */,
 				30B664831FCDA0EB003C8B55 /* ScannerTableViewController.swift in Sources */,
+				84237DAE21230FDB009433EF /* Alerts.swift in Sources */,
 				30B664881FCDA2E0003C8B55 /* BlinkyPeripheral.swift in Sources */,
+				84FC31D32118A9F600C9894C /* RandomViewController.swift in Sources */,
 				30B664801FCD9638003C8B55 /* RootViewController.swift in Sources */,
 				30B664451FCD6E65003C8B55 /* AppDelegate.swift in Sources */,
+				84078E4F2124912E00F3B479 /* Preference.swift in Sources */,
 				30B6648B1FD1590A003C8B55 /* BlinkyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -487,6 +640,7 @@
 		};
 		30B6646A1FCD6E65003C8B55 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 37750AECAECEDC94DD7E109D /* Pods-NetKnight.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -503,6 +657,7 @@
 		};
 		30B6646B1FCD6E65003C8B55 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E847D27A9A4AAA18113E850B /* Pods-NetKnight.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -519,6 +674,7 @@
 		};
 		30B6646D1FCD6E65003C8B55 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F5BF8565EAD86C55124802D /* Pods-NetKnightTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -536,6 +692,7 @@
 		};
 		30B6646E1FCD6E65003C8B55 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 322B75CB64D86A1A4B44E7FE /* Pods-NetKnightTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -553,6 +710,7 @@
 		};
 		30B664701FCD6E65003C8B55 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EAAC67BD1B0B65842F44F39A /* Pods-NetKnightUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -569,6 +727,7 @@
 		};
 		30B664711FCD6E65003C8B55 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 12FDAAF25D38BD84746858ED /* Pods-NetKnightUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

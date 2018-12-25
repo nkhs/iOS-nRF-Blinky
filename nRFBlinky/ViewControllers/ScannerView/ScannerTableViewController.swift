@@ -24,7 +24,11 @@ class ScannerTableViewController: UITableViewController, CBCentralManagerDelegat
         super.viewDidLoad()
         centralManager = (((UIApplication.shared.delegate) as? AppDelegate)?.centralManager)!
         centralManager.delegate = self
+        
+        
     }
+    
+    
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
@@ -106,6 +110,14 @@ class ScannerTableViewController: UITableViewController, CBCentralManagerDelegat
         super.viewWillAppear(animated)
         discoveredPeripherals.removeAll()
         tableView.reloadData()
+        
+        if blinkyPeripheral != nil {
+            if blinkyPeripheral.basePeripheral != nil {
+                if blinkyPeripheral.basePeripheral.state == .connected {
+                    centralManager.cancelPeripheralConnection(blinkyPeripheral.basePeripheral)
+                }
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
