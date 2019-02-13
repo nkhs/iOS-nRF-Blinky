@@ -7,7 +7,6 @@
 //
 
 import XCTest
-@testable import nRFBlinky
 
 class nRFBlinkyTests: XCTestCase {
     

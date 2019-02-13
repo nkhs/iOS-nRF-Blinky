@@ -22,16 +22,16 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
     @IBOutlet weak var randomBtnOutlet: UIButton!
     @IBOutlet weak var toggleSwitch: UISwitch!
     @IBOutlet weak var labelOutlet: UILabel!
-
+    
     @IBOutlet weak var btnLevelOutlet: UIButton!
-
+    
     var isChecked = false
     var isCheckedRandom = false
     
     func updateButton(_ isUpdate:Bool = false, _ fromButton:Bool = false){
         if isChecked {
             if blinkyPeripheral != nil && isUpdate {
-                blinkyPeripheral.writeMode(0x1)
+                //                blinkyPeripheral.writeMode(0x1)
             }
             if fromButton {
                 toggleSwitch.setOn(true, animated: false)
@@ -40,9 +40,9 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
             randomSwitch.isEnabled = false
         } else {
             if blinkyPeripheral != nil && isUpdate {
-                blinkyPeripheral.writeMode(0x2)
+                //                blinkyPeripheral.writeMode(0x2)
             }
-
+            
             if fromButton {
                 toggleSwitch.setOn(false, animated: false)
             }
@@ -54,7 +54,7 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
     func updateRandomButton(_ isUpdate:Bool = false, _ fromButton:Bool = false){
         if isCheckedRandom {
             if blinkyPeripheral != nil && isUpdate {
-                blinkyPeripheral.writeMode(0x3)
+                //                blinkyPeripheral.writeMode(0x3)
             }
             toggleSwitch.isEnabled = false
             toggleSwitch.setOn(false, animated: false)
@@ -65,7 +65,7 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
             }
         }else {
             if blinkyPeripheral != nil && isUpdate {
-                blinkyPeripheral.writeMode(0x4)
+                //                blinkyPeripheral.writeMode(0x4)
             }
             
             toggleSwitch.isEnabled = true
@@ -89,12 +89,12 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
         updateRandomButton(true)
         print("Random2", randomSwitch.isOn)
     }
-
+    
     //MARK: - Properties
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-
+    
     private var hapticGenerator : NSObject? //Only available on iOS 10 and above
     
     private var centralManager : CBCentralManager!
@@ -118,48 +118,71 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
         
         alert.addAction(UIAlertAction(title: "Level 1", style: .default, handler: { (action) in
             self.btnLevelOutlet.setTitle("Level 1", for:.normal)
-            blinkyPeripheral.writeLevel(0x1)
+            if let cmd = self.getCommandWithLevel(1) {
+                blinkyPeripheral.writeLevel(cmd)
+            }
         }))
         alert.addAction(UIAlertAction(title: "Level 2", style: .default, handler: { (action) in
             self.btnLevelOutlet.setTitle("Level 2", for:.normal)
-            blinkyPeripheral.writeLevel(0x2)
+            if let cmd = self.getCommandWithLevel(2) {
+                blinkyPeripheral.writeLevel(cmd)
+            }
         }))
         alert.addAction(UIAlertAction(title: "Level 3", style: .default, handler: { (action) in
             self.btnLevelOutlet.setTitle("Level 3", for:.normal)
-            blinkyPeripheral.writeLevel(0x3)
+            if let cmd = self.getCommandWithLevel(3) {
+                blinkyPeripheral.writeLevel(cmd)
+            }
         }))
         alert.addAction(UIAlertAction(title: "Level 4", style: .default, handler: { (action) in
             self.btnLevelOutlet.setTitle("Level 4", for:.normal)
-            blinkyPeripheral.writeLevel(0x4)
+            if let cmd = self.getCommandWithLevel(4) {
+                blinkyPeripheral.writeLevel(cmd)
+            }
         }))
         alert.addAction(UIAlertAction(title: "Level 5", style: .default, handler: { (action) in
             self.btnLevelOutlet.setTitle("Level 5", for:.normal)
-            blinkyPeripheral.writeLevel(0x5)
+            if let cmd = self.getCommandWithLevel(5) {
+                blinkyPeripheral.writeLevel(cmd)
+            }
         }))
         alert.addAction(UIAlertAction(title: "Level 6", style: .default, handler: { (action) in
             self.btnLevelOutlet.setTitle("Level 6", for:.normal)
-            blinkyPeripheral.writeLevel(0x6)
+            if let cmd = self.getCommandWithLevel(6) {
+                blinkyPeripheral.writeLevel(cmd)
+            }
         }))
         alert.addAction(UIAlertAction(title: "Level 7", style: .default, handler: { (action) in
             self.btnLevelOutlet.setTitle("Level 7", for:.normal)
-            blinkyPeripheral.writeLevel(0x7)
+            if let cmd = self.getCommandWithLevel(7) {
+                blinkyPeripheral.writeLevel(cmd)
+            }
         }))
         alert.addAction(UIAlertAction(title: "Level 8", style: .default, handler: { (action) in
             self.btnLevelOutlet.setTitle("Level 8", for:.normal)
-            blinkyPeripheral.writeLevel(0x8)
+            if let cmd = self.getCommandWithLevel(8) {
+                blinkyPeripheral.writeLevel(cmd)
+            }
         }))
         alert.addAction(UIAlertAction(title: "Level 9", style: .default, handler: { (action) in
             self.btnLevelOutlet.setTitle("Level 9", for:.normal)
-            blinkyPeripheral.writeLevel(0x9)
+            
+            if let cmd = self.getCommandWithLevel(9) {
+                blinkyPeripheral.writeLevel(cmd)
+            }
         }))
         alert.addAction(UIAlertAction(title: "Level 10", style: .default, handler: { (action) in
             self.btnLevelOutlet.setTitle("Level 10", for:.normal)
-            blinkyPeripheral.writeLevel(0xa)
+            if let cmd = self.getCommandWithLevel(10) {
+                blinkyPeripheral.writeLevel(cmd)
+            }
         }))
         
         self.present(alert, animated: true, completion: nil)
     }
-    
+    func getCommandWithLevel(_ level:Int) -> Data! {
+        return ("CMD*MM*{\"S\":\(level)}#").data(using: .utf8)
+    }
     private func setupDependencies() {
         //This will run on iOS 10 or above
         //and will generate a tap feedback when the button is tapped on the Dev kit.
@@ -210,7 +233,7 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
         let height = button.frame.height
         button.layer.cornerRadius = height / 4
     }
-
+    
     
     //MARK: - UIViewController
     override func viewWillAppear(_ animated: Bool) {
@@ -234,40 +257,40 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
         setupDependencies()
     }
     
-
+    
     override func viewDidDisappear(_ animated: Bool) {
         print("removing button notification and led write callback handlers")
-//        blinkyPeripheral.removeLEDCallback()
-//        blinkyPeripheral.removeButtonCallback()
-//        
-//        if blinkyPeripheral.basePeripheral.state == .connected {
-//            centralManager.cancelPeripheralConnection(blinkyPeripheral.basePeripheral)
-//        }
+        //        blinkyPeripheral.removeLEDCallback()
+        //        blinkyPeripheral.removeButtonCallback()
+        //
+        //        if blinkyPeripheral.basePeripheral.state == .connected {
+        //            centralManager.cancelPeripheralConnection(blinkyPeripheral.basePeripheral)
+        //        }
         
         super.viewDidDisappear(animated)
     }
-
+    
     //MARK: - CBCentralManagerDelegate
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state != .poweredOn {
             dismiss(animated: true, completion: nil)
         }
     }
-
+    
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         if peripheral == blinkyPeripheral.basePeripheral {
             print("connected to blinky.")
             blinkyPeripheral.discoverBlinkyServices()
         }
     }
-
+    
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         if peripheral == blinkyPeripheral.basePeripheral {
             print("blinky disconnected.")
             navigationController?.popToRootViewController(animated: true)
         }
     }
-
+    
     private func prepareHaptics() {
         if #available(iOS 10.0, *) {
             hapticGenerator = UIImpactFeedbackGenerator(style: .heavy)
@@ -282,7 +305,7 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
 }
 
 extension UIButton {
-    func setBackgroundColor(color: UIColor, forState: UIControlState) {
+    func setBackgroundColor(color: UIColor, forState: UIControl.State) {
         UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
         UIGraphicsGetCurrentContext()!.setFillColor(color.cgColor)
         UIGraphicsGetCurrentContext()!.fill(CGRect(x: 0, y: 0, width: 1, height: 1))

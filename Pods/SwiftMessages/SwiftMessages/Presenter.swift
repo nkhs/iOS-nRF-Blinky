@@ -136,7 +136,7 @@ class Presenter: NSObject {
             })
         }
 
-        func blur(style: UIBlurEffectStyle, alpha: CGFloat) {
+        func blur(style: UIBlurEffect.Style, alpha: CGFloat) {
             let blurView = UIVisualEffectView(effect: nil)
             blurView.alpha = alpha
             maskingView.backgroundView = blurView
@@ -164,13 +164,13 @@ class Presenter: NSObject {
     private func showAccessibilityAnnouncement() {
         guard let accessibleMessage = view as? AccessibleMessage,
             let message = accessibleMessage.accessibilityMessage else { return }
-        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message)
+        UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: message)
     }
 
     private func showAccessibilityFocus() {
         guard let accessibleMessage = view as? AccessibleMessage,
             let focus = accessibleMessage.accessibilityElement ?? accessibleMessage.additonalAccessibilityElements?.first else { return }
-        UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, focus)
+        UIAccessibility.post(notification: UIAccessibility.Notification.layoutChanged, argument: focus)
     }
 
     var isHiding = false
@@ -221,7 +221,7 @@ class Presenter: NSObject {
         guard let window = maskingView.window else { return [] }
         let inNormalWindowLevel: Bool = {
             if let vc = presentationContext.viewControllerValue() as? WindowViewController {
-                return vc.windowLevel == UIWindowLevelNormal
+                return vc.windowLevel == UIWindow.Level.normal
             }
             return true
         } ()
@@ -267,7 +267,7 @@ class Presenter: NSObject {
 
     private func getPresentationContext() throws -> PresentationContext {
 
-        func newWindowViewController(_ windowLevel: UIWindowLevel) -> UIViewController {
+        func newWindowViewController(_ windowLevel: UIWindow.Level) -> UIViewController {
             let viewController = WindowViewController.newInstance(windowLevel: windowLevel, config: config)
             return viewController
         }
@@ -364,11 +364,11 @@ class Presenter: NSObject {
                 dismissView.translatesAutoresizingMaskIntoConstraints = true
                 dismissView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
                 maskingView.addSubview(dismissView)
-                maskingView.sendSubview(toBack: dismissView)
+                maskingView.sendSubviewToBack(dismissView)
                 dismissView.isUserInteractionEnabled = false
                 dismissView.isAccessibilityElement = true
                 dismissView.accessibilityLabel = config.dimModeAccessibilityLabel
-                dismissView.accessibilityTraits = UIAccessibilityTraitButton
+                dismissView.accessibilityTraits = UIAccessibilityTraits.button
                 elements.append(dismissView)
             }
             if config.dimMode.modal {

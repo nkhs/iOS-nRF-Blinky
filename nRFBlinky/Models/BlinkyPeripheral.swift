@@ -12,17 +12,10 @@ import CoreBluetooth
 class BlinkyPeripheral: NSObject, CBPeripheralDelegate {
     //MARK: - Blinky services and charcteristics Identifiers
     //
-    public static let nordicBlinkyServiceUUID  = CBUUID.init(string: "00001207-0000-1000-8000-00805f9b34fb")
-    public static let modeCharacteristicUUID = CBUUID.init(string: "00001208-0000-1000-8000-00805f9b34fb")
-    public static let modeNotifyCharacteristicUUID = CBUUID.init(string: "00001210-0000-1000-8000-00805f9b34fb")
-    public static let levelCharacteristicUUID    = CBUUID.init(string: "00001209-0000-1000-8000-00805f9b34fb")
-    public static let randomCharacteristicUUID    = CBUUID.init(string: "00001211-0000-1000-8000-00805f9b34fb")
     
-//        public static let nordicBlinkyServiceUUID  = CBUUID.init(string: "00001975-0000-1000-8000-00805f9b34fb")
-//        public static let modeCharacteristicUUID = CBUUID.init(string: "00001006-0000-1000-8000-00805f9b34fb")
-//        public static let modeNotifyCharacteristicUUID = CBUUID.init(string: "00001007-0000-1000-8000-00805f9b34fb")
-//        public static let levelCharacteristicUUID    = CBUUID.init(string: "00001003-0000-1000-8000-00805f9b34fb")
-//        public static let randomCharacteristicUUID    = CBUUID.init(string: "00001002-0000-1000-8000-00805f9b34fb")
+    public static let nordicBlinkyServiceUUID  = CBUUID.init(string: "6E400001-B5A3-F393-E0A9-E50E24DCCA9E")
+    public static let modeNotifyCharacteristicUUID = CBUUID.init(string: "6E400003-B5A3-F393-E0A9-E50E24DCCA9E")
+    public static let levelCharacteristicUUID    = CBUUID.init(string: "6E400002-B5A3-F393-E0A9-E50E24DCCA9E")
     
     //MARK: - Properties
     //
@@ -34,16 +27,15 @@ class BlinkyPeripheral: NSObject, CBPeripheralDelegate {
     //MARK: - Callback handlers
     private var levelCallbackHandler : ((UInt8) -> (Void))?
     private var modeChangedHandler : ((UInt8) -> (Void))?
-
+    
     //MARK: - Services and Characteristic properties
     //
     private             var blinkyService       : CBService?
-    private             var modeCharacteristic: CBCharacteristic?
+    
     private             var levelCharacteristic   : CBCharacteristic?
     private             var modeNotifyCharacteristic   : CBCharacteristic?
-    private             var randomWriteCharacteristic   : CBCharacteristic?
     
-
+    
     init(withPeripheral aPeripheral: CBPeripheral, advertisementData anAdvertisementDictionary: [String : Any], andRSSI anRSSI: NSNumber) {
         basePeripheral = aPeripheral
         RSSI = anRSSI
@@ -55,7 +47,7 @@ class BlinkyPeripheral: NSObject, CBPeripheralDelegate {
     public func setLevelCallback(aCallbackHandler: @escaping (UInt8) -> (Void)){
         levelCallbackHandler = aCallbackHandler
     }
-
+    
     public func setModeCallback(aCallbackHandler: @escaping (UInt8) -> (Void)) {
         modeChangedHandler = aCallbackHandler
     }
@@ -67,7 +59,7 @@ class BlinkyPeripheral: NSObject, CBPeripheralDelegate {
     public func removeLEDCallback() {
         levelCallbackHandler = nil
     }
-
+    
     public func discoverBlinkyServices() {
         print("Discovering blinky service")
         basePeripheral.delegate = self
@@ -75,12 +67,10 @@ class BlinkyPeripheral: NSObject, CBPeripheralDelegate {
     }
     
     public func discoverCharacteristicsForBlinkyService(_ aService: CBService) {
-        basePeripheral.discoverCharacteristics([BlinkyPeripheral.modeCharacteristicUUID,
-                                            BlinkyPeripheral.levelCharacteristicUUID,
-                                            BlinkyPeripheral.modeNotifyCharacteristicUUID,
-                                            BlinkyPeripheral.randomCharacteristicUUID
-                                            ],
-                                           for: aService)
+        basePeripheral.discoverCharacteristics([BlinkyPeripheral.levelCharacteristicUUID,
+                                                BlinkyPeripheral.modeNotifyCharacteristicUUID,
+                                                ],
+                                               for: aService)
     }
     
     public func enableNotifications(_ characteristic: CBCharacteristic) {
@@ -94,16 +84,10 @@ class BlinkyPeripheral: NSObject, CBPeripheralDelegate {
         }
     }
     
-    public func readMode() {
-        if let modeCharacteristic = modeCharacteristic {
-            basePeripheral.readValue(for: modeCharacteristic)
-        }
-    }
-
     public func didReceiveLevelValue(_ aValue: Data) {
         print("level value received \(aValue[0])")
         levelCallbackHandler?(aValue[0])
-       
+        
     }
     
     public func didReceiveModeNotificationWithValue(_ aValue: Data) {
@@ -111,8 +95,8 @@ class BlinkyPeripheral: NSObject, CBPeripheralDelegate {
         modeChangedHandler?(aValue[0])
     }
     
-    public func writeLevel(_ byte:UInt8) {
-        writeLevelCharcateristicValue(Data([byte]))
+    public func writeLevel(_ byte:Data) {
+        writeLevelCharcateristicValue(byte)
     }
     
     private func writeLevelCharcateristicValue(_ aValue: Data) {
@@ -123,37 +107,10 @@ class BlinkyPeripheral: NSObject, CBPeripheralDelegate {
         basePeripheral.writeValue(aValue, for: levelCharacteristic, type: .withResponse)
     }
     
-    public func writeMode(_ byte:UInt8) {
-        writeModeCharcateristicValue(Data([byte]))
-    }
-    
-    public func writeRandom(_ arrByte:[UInt8]) {
-        firebaseLog("-- writing random")
-        guard let randomCharacteristic = randomWriteCharacteristic else {
-            firebaseLog("Mode characteristic is not present, nothing to be done")
-            return
-        }
-        
-        firebaseLog(" -- call write random " + randomCharacteristic.uuid.uuidString)
-        let hexaString = arrByte.map{String(format: "%02X,", $0)}.joined()
-        firebaseLog(hexaString)
-        basePeripheral.writeValue(Data(arrByte), for: randomCharacteristic, type: .withResponse)
-    }
-    
-    private func writeModeCharcateristicValue(_ aValue: Data) {
-        guard let modeCharacteristic = modeCharacteristic else {
-            print("Mode characteristic is not present, nothing to be done")
-            return
-        }
-        basePeripheral.writeValue(aValue, for: modeCharacteristic, type: .withResponse)
-    }
-    
-    
-
     private func parseAdvertisementData(_ anAdvertisementDictionary: [String : Any]) -> (String?, [CBUUID]?) {
         var advertisedName: String
         var advertisedServices: [CBUUID]
-
+        
         if let name = anAdvertisementDictionary[CBAdvertisementDataLocalNameKey] as? String{
             advertisedName = name
         } else {
@@ -193,17 +150,17 @@ class BlinkyPeripheral: NSObject, CBPeripheralDelegate {
             }
         }
     }
-
+    
     func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
-        if characteristic.uuid == modeCharacteristic?.uuid {
+        if characteristic.uuid == modeNotifyCharacteristic?.uuid {
             print("Notification state is now \(characteristic.isNotifying) for Button characteristic")
-            readMode()
+            
             readLevel()
         } else {
             print("Notification state is now \(characteristic.isNotifying) for an unknown characteristic with UUID: \(characteristic.uuid.uuidString)")
         }
     }
-
+    
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         if let services = peripheral.services {
             for aService in services {
@@ -222,11 +179,7 @@ class BlinkyPeripheral: NSObject, CBPeripheralDelegate {
             print("Discovered characteristics for blinky service")
             if let characteristics = service.characteristics {
                 for aCharacteristic in characteristics {
-                    if aCharacteristic.uuid == BlinkyPeripheral.modeCharacteristicUUID {
-                        firebaseLog("ble ch: Discovered Blinky button characteristic")
-                        modeCharacteristic = aCharacteristic
-//                        enableNotifications(modeCharacteristic!)
-                    } else if aCharacteristic.uuid == BlinkyPeripheral.levelCharacteristicUUID {
+                    if aCharacteristic.uuid == BlinkyPeripheral.levelCharacteristicUUID {
                         firebaseLog("ble ch: Discovered Blinky LED characteristic")
                         levelCharacteristic = aCharacteristic
                         enableNotifications(levelCharacteristic!)
@@ -234,9 +187,6 @@ class BlinkyPeripheral: NSObject, CBPeripheralDelegate {
                         firebaseLog("ble ch: Discovered Blinky modeNotifyCharacteristicUUID characteristic")
                         modeNotifyCharacteristic = aCharacteristic
                         enableNotifications(modeNotifyCharacteristic!)
-                    } else if aCharacteristic.uuid == BlinkyPeripheral.randomCharacteristicUUID {
-                        firebaseLog("ble ch: Discovered randomCH")
-                        randomWriteCharacteristic = aCharacteristic
                     }
                 }
             }

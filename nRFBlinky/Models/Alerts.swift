@@ -13,7 +13,7 @@ class Alerts {
     private static var alertConfig: SwiftMessages.Config {
         var config = SwiftMessages.Config()
         config.presentationStyle = .bottom
-        config.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+        config.presentationContext = .window(windowLevel: UIWindow.Level(rawValue: UIWindow.Level.statusBar.rawValue))
         config.duration = .automatic
         config.dimMode = .none
         config.interactiveHide = false

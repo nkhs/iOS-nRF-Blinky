@@ -21,11 +21,17 @@ class RandomViewController: UITableViewController {
     @IBOutlet weak var level9SwitchOutlet: UISwitch!
     @IBOutlet weak var level10SwitchOutlet: UISwitch!
     
-    @IBOutlet weak var minDigitTextFieldOutlet: UITextField!
     
-    
-    
-    @IBOutlet weak var maxDigitTextFieldOutlet: UITextField!
+    @IBOutlet weak var level1TextFieldOutlet: UITextField!
+    @IBOutlet weak var level2TextFieldOutlet: UITextField!
+    @IBOutlet weak var level3TextFieldOutlet: UITextField!
+    @IBOutlet weak var level4TextFieldOutlet: UITextField!
+    @IBOutlet weak var level5TextFieldOutlet: UITextField!
+    @IBOutlet weak var level6TextFieldOutlet: UITextField!
+    @IBOutlet weak var level7TextFieldOutlet: UITextField!
+    @IBOutlet weak var level8TextFieldOutlet: UITextField!
+    @IBOutlet weak var level9TextFieldOutlet: UITextField!
+    @IBOutlet weak var level10TextFieldOutlet: UITextField!
     
     @IBOutlet weak var updateButtonOutlet: UIButton!
     
@@ -122,58 +128,61 @@ class RandomViewController: UITableViewController {
     
     @IBAction func onTapUpdateButton(_ sender: Any) {
         if let blinkyPeripheral = blinkyPeripheral {
-            guard let minDigit = minDigitTextFieldOutlet.text,
-                
-                let maxDigit = maxDigitTextFieldOutlet.text else {
-                    Alerts.showToastError(title: "Error", message: "Input error")
-                    firebaseLog("Input error")
-                    return
+            var content = "";
+            
+            var time:Float = 0;
+            if level1SwitchOutlet.isOn {
+                time = Float(level1TextFieldOutlet.text!) ?? 0
+                content += "{ \"S\": 1, \"T\": \(time)},";
+            }
+            if level2SwitchOutlet.isOn {
+                time = Float(level2TextFieldOutlet.text!) ?? 0
+                content += "{ \"S\": 2, \"T\": \(time)},";
+            }
+            if level3SwitchOutlet.isOn  {
+                time = Float(level3TextFieldOutlet.text!) ?? 0
+                content += "{ \"S\": 3, \"T\": \(time)},";
+            }
+            if level4SwitchOutlet.isOn  {
+                time = Float(level4TextFieldOutlet.text!) ?? 0
+                content += "{ \"S\": 4, \"T\": \(time)},";
+            }
+            if level5SwitchOutlet.isOn  {
+                time = Float(level5TextFieldOutlet.text!) ?? 0
+                content += "{ \"S\": 5, \"T\": \(time)},";
+            }
+            if level6SwitchOutlet.isOn  {
+                time = Float(level6TextFieldOutlet.text!) ?? 0
+                content += "{ \"S\": 6, \"T\": \(time)},";
+            }
+            if level7SwitchOutlet.isOn  {
+                time = Float(level7TextFieldOutlet.text!) ?? 0
+                content += "{ \"S\": 7, \"T\": \(time)},";
+            }
+            if level8SwitchOutlet.isOn  {
+                time = Float(level8TextFieldOutlet.text!) ?? 0
+                content += "{ \"S\": 8, \"T\": \(time)},";
+            }
+            if level9SwitchOutlet.isOn  {
+                time = Float(level9TextFieldOutlet.text!) ?? 0
+                content += "{ \"S\": 9, \"T\": \(time)},";
+            }
+            if level10SwitchOutlet.isOn  {
+                time = Float(level10TextFieldOutlet.text!) ?? 0
+                content += "{ \"S\": 10, \"T\": \(time)},";
             }
             
-            guard let minFloat = Float(minDigit),
-                let maxFloat = Float(maxDigit)  else {
-                    Alerts.showToastError(title: "Error", message: "Cannot convert UInt8")
-                    firebaseLog("Cannot convert UInt8")
-                    return
-            }
-            let minDArray = minFloat.splitAtDecimal()
-            let maxDArray = maxFloat.splitAtDecimal()
             
-            var minD:UInt8 = 0
-            var minF:UInt8 = 0
-            var maxD:UInt8 = 0
-            var maxF:UInt8 = 0
+            let command = "CMD*RM*{\"{ \"ST\": [" + content + "]}}#";
             
-            if let first = minDArray.first {
-                minD = UInt8(first)
+            let len = command.count;
+            let count = Int( ceil(Double(len / 20)))
+            for i in 0..<count {
+                let newArray = command.substring(from: i * 20, to: (i + 1) * 20);
+                if let data = newArray.data(using: .utf8) {
+                    blinkyPeripheral.writeLevel(data)
+                }
             }
-            if minDArray.count > 1 {
-                minF = UInt8(minDArray[1])
-            }
-            
-            if let first = maxDArray.first {
-                maxD = UInt8(first)
-            }
-            if maxDArray.count > 1 {
-                maxF = UInt8(maxDArray[1])
-            }
-            var arrByte = [UInt8]()
-            arrByte.append( level1SwitchOutlet.isOn ? 0x1 : 0x0)
-            arrByte.append( level2SwitchOutlet.isOn ? 0x1 : 0x0)
-            arrByte.append( level3SwitchOutlet.isOn ? 0x1 : 0x0)
-            arrByte.append( level4SwitchOutlet.isOn ? 0x1 : 0x0)
-            arrByte.append( level5SwitchOutlet.isOn ? 0x1 : 0x0)
-            arrByte.append( level6SwitchOutlet.isOn ? 0x1 : 0x0)
-            arrByte.append( level7SwitchOutlet.isOn ? 0x1 : 0x0)
-            arrByte.append( level8SwitchOutlet.isOn ? 0x1 : 0x0)
-            arrByte.append( level9SwitchOutlet.isOn ? 0x1 : 0x0)
-            arrByte.append( level10SwitchOutlet.isOn ? 0x1 : 0x0)
-            arrByte.append(minD)
-            arrByte.append(minF)
-            arrByte.append(maxD)
-            arrByte.append(maxF)
-            firebaseLog("minD, :) , \(minD), \(minF), \(maxD), \(maxF)")
-            blinkyPeripheral.writeRandom(arrByte)
             
             let randomConfig =  RandomConfig()
             randomConfig.level1 = level1SwitchOutlet.isOn
@@ -186,8 +195,6 @@ class RandomViewController: UITableViewController {
             randomConfig.level8 = level8SwitchOutlet.isOn
             randomConfig.level9 = level9SwitchOutlet.isOn
             randomConfig.level10 = level10SwitchOutlet.isOn
-            randomConfig.min = minFloat
-            randomConfig.max = maxFloat
             Preference.shared.setRandomConfig(randomConfig)
         } else {
             Alerts.showToastError(title: "Error", message: "Ble Not connected")
@@ -216,9 +223,17 @@ class RandomViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        minDigitTextFieldOutlet.delegate = self
+        level1TextFieldOutlet.delegate = self
+        level2TextFieldOutlet.delegate = self
+        level3TextFieldOutlet.delegate = self
+        level4TextFieldOutlet.delegate = self
+        level5TextFieldOutlet.delegate = self
+        level6TextFieldOutlet.delegate = self
+        level7TextFieldOutlet.delegate = self
+        level8TextFieldOutlet.delegate = self
+        level9TextFieldOutlet.delegate = self
+        level10TextFieldOutlet.delegate = self
         
-        maxDigitTextFieldOutlet.delegate = self
         
         updateButtonOutlet.disable()
         let height = updateButtonOutlet.frame.height
@@ -250,8 +265,7 @@ class RandomViewController: UITableViewController {
             let min = randomConfig.min
             let max = randomConfig.max
             
-            minDigitTextFieldOutlet.text = String(min)
-            maxDigitTextFieldOutlet.text = String(max)
+            
             checkUpdateEnable()
         }
     }
@@ -324,5 +338,17 @@ extension Float {
         }
         
         return arrInt
+    }
+}
+
+extension String {
+    func substring(from: Int, to: Int) -> String {
+        let start = index(startIndex, offsetBy: from)
+        let end = index(start, offsetBy: to - from)
+        return String(self[start ..< end])
+    }
+    
+    func substring(range: NSRange) -> String {
+        return substring(from: range.lowerBound, to: range.upperBound)
     }
 }
