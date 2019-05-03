@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		160DCE6122432FBC004CB790 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 160DCE6022432FBC004CB790 /* GoogleService-Info.plist */; };
 		1D709F7821D829900637D7B0 /* Pods_NetKnightUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 880AE4C76288BD0A60977792 /* Pods_NetKnightUITests.framework */; };
 		30B664451FCD6E65003C8B55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B664441FCD6E65003C8B55 /* AppDelegate.swift */; };
 		30B6644A1FCD6E65003C8B55 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30B664481FCD6E65003C8B55 /* Main.storyboard */; };
@@ -20,7 +21,6 @@
 		30B664881FCDA2E0003C8B55 /* BlinkyPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B664871FCDA2E0003C8B55 /* BlinkyPeripheral.swift */; };
 		30B6648B1FD1590A003C8B55 /* BlinkyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B6648A1FD1590A003C8B55 /* BlinkyViewController.swift */; };
 		4289E475D237173EB419262E /* Pods_NetKnightTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D72D9767EF848C7777ECC5EB /* Pods_NetKnightTests.framework */; };
-		84078E4B212486F700F3B479 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84078E4A212486F700F3B479 /* GoogleService-Info.plist */; };
 		84078E4F2124912E00F3B479 /* Preference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84078E4E2124912E00F3B479 /* Preference.swift */; };
 		84237DAE21230FDB009433EF /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84237DAD21230FDB009433EF /* Alerts.swift */; };
 		84FC31D32118A9F600C9894C /* RandomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FC31D22118A9F600C9894C /* RandomViewController.swift */; };
@@ -46,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		12FDAAF25D38BD84746858ED /* Pods-NetKnightUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetKnightUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NetKnightUITests/Pods-NetKnightUITests.release.xcconfig"; sourceTree = "<group>"; };
+		160DCE6022432FBC004CB790 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2F5BF8565EAD86C55124802D /* Pods-NetKnightTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetKnightTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NetKnightTests/Pods-NetKnightTests.debug.xcconfig"; sourceTree = "<group>"; };
 		30B664411FCD6E65003C8B55 /* NetKnight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetKnight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30B664441FCD6E65003C8B55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -67,7 +68,6 @@
 		322B75CB64D86A1A4B44E7FE /* Pods-NetKnightTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetKnightTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NetKnightTests/Pods-NetKnightTests.release.xcconfig"; sourceTree = "<group>"; };
 		37750AECAECEDC94DD7E109D /* Pods-NetKnight.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetKnight.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NetKnight/Pods-NetKnight.debug.xcconfig"; sourceTree = "<group>"; };
 		41F0FEB3684D8BA5A51428F3 /* Pods_NetKnight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetKnight.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		84078E4A212486F700F3B479 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		84078E4E2124912E00F3B479 /* Preference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preference.swift; sourceTree = "<group>"; };
 		840AED2D210C747C00484297 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		84237DAD21230FDB009433EF /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
@@ -154,6 +154,7 @@
 		30B664431FCD6E65003C8B55 /* nRFBlinky */ = {
 			isa = PBXGroup;
 			children = (
+				160DCE6022432FBC004CB790 /* GoogleService-Info.plist */,
 				840AED2C210C746900484297 /* fonts */,
 				30B664861FCDA2C5003C8B55 /* Models */,
 				30B664791FCD722A003C8B55 /* ViewControllers */,
@@ -161,7 +162,6 @@
 				30B664481FCD6E65003C8B55 /* Main.storyboard */,
 				30B6644B1FCD6E65003C8B55 /* Assets.xcassets */,
 				30B6644D1FCD6E65003C8B55 /* LaunchScreen.storyboard */,
-				84078E4A212486F700F3B479 /* GoogleService-Info.plist */,
 				30B664501FCD6E65003C8B55 /* Info.plist */,
 				84078E4E2124912E00F3B479 /* Preference.swift */,
 			);
@@ -359,7 +359,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30B6644F1FCD6E65003C8B55 /* LaunchScreen.storyboard in Resources */,
-				84078E4B212486F700F3B479 /* GoogleService-Info.plist in Resources */,
+				160DCE6122432FBC004CB790 /* GoogleService-Info.plist in Resources */,
 				30B6644C1FCD6E65003C8B55 /* Assets.xcassets in Resources */,
 				30B6644A1FCD6E65003C8B55 /* Main.storyboard in Resources */,
 			);
@@ -647,7 +647,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D33EN46ZP4;
+				DEVELOPMENT_TEAM = 8LWLZ6U245;
 				INFOPLIST_FILE = nRFBlinky/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -664,7 +664,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D33EN46ZP4;
+				DEVELOPMENT_TEAM = 8LWLZ6U245;
 				INFOPLIST_FILE = nRFBlinky/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

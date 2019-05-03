@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>358075592962-qspthq08ffms5ad202aocie1417hr5u7.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.358075592962-qspthq08ffms5ad202aocie1417hr5u7</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBrNrZu8syueMR3dWvTeIpWJ5-NB-N2CCs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>358075592962</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.net.knight.control</string>
+	<key>PROJECT_ID</key>
+	<string>my-ble-android-app</string>
+	<key>STORAGE_BUCKET</key>
+	<string>my-ble-android-app.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:358075592962:ios:94781f24f65e94b2</string>
+	<key>DATABASE_URL</key>
+	<string>https://my-ble-android-app.firebaseio.com</string>
+</dict>
+</plist>

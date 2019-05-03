@@ -171,9 +171,10 @@ class RandomViewController: UITableViewController {
                 time = Float(level10TextFieldOutlet.text!) ?? 0
                 content += "{ \"S\": 10, \"T\": \(time)},";
             }
+            content = content.substring(from: 0, to: content.count - 1)
             
             
-            let command = "CMD*RM*{\"{ \"ST\": [" + content + "]}}#";
+            let command = "CMD*RM*{\"\"ST\": [" + content + "]}#";
             
             let len = command.count;
             let count = Int( ceil(Double(len / 20)))
