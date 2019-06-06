@@ -20,7 +20,7 @@ import DefaultsKit
 class Preference {
     static let shared = Preference()
     
-    static let PAIRED_DEVICE_INFO_KEY = "RANDOM_CONFIG"
+    static let PAIRED_DEVICE_INFO_KEY = "RANDOM_CONFIGV2"
     
     // MARK: Paired Device Info preferences
     
@@ -36,14 +36,6 @@ class Preference {
         let info = Key<RandomConfig>(Preference.PAIRED_DEVICE_INFO_KEY)
         Defaults.shared.set(device, for: info)
     }
-    
-//    func updateFirmwareVersion(_ firmwareVersion: String) {
-//        let deviceInfoKey = Key<DeviceInfo>(Preference.PAIRED_DEVICE_INFO_KEY)
-//        if let deviceInfo = Defaults.shared.get(for: deviceInfoKey) {
-//            deviceInfo.firmwareVersion = firmwareVersion
-//            setPairedDevice(deviceInfo)
-//        }
-//    }
     
     func unsetPairedDevice() {
         let deviceInfoKey = Key<RandomConfig>(Preference.PAIRED_DEVICE_INFO_KEY)

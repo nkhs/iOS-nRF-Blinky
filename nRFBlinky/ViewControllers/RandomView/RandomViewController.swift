@@ -133,54 +133,58 @@ class RandomViewController: UITableViewController {
             var time:Float = 0;
             if level1SwitchOutlet.isOn {
                 time = Float(level1TextFieldOutlet.text!) ?? 0
-                content += "{ \"S\": 1, \"T\": \(time)},";
+                content += "{\"S\":1,\"T\":\(time)},";
             }
             if level2SwitchOutlet.isOn {
                 time = Float(level2TextFieldOutlet.text!) ?? 0
-                content += "{ \"S\": 2, \"T\": \(time)},";
+                content += "{\"S\":2,\"T\":\(time)},";
             }
             if level3SwitchOutlet.isOn  {
                 time = Float(level3TextFieldOutlet.text!) ?? 0
-                content += "{ \"S\": 3, \"T\": \(time)},";
+                content += "{\"S\":3,\"T\":\(time)},";
             }
             if level4SwitchOutlet.isOn  {
                 time = Float(level4TextFieldOutlet.text!) ?? 0
-                content += "{ \"S\": 4, \"T\": \(time)},";
+                content += "{\"S\":4,\"T\":\(time)},";
             }
             if level5SwitchOutlet.isOn  {
                 time = Float(level5TextFieldOutlet.text!) ?? 0
-                content += "{ \"S\": 5, \"T\": \(time)},";
+                content += "{\"S\":5,\"T\":\(time)},";
             }
             if level6SwitchOutlet.isOn  {
                 time = Float(level6TextFieldOutlet.text!) ?? 0
-                content += "{ \"S\": 6, \"T\": \(time)},";
+                content += "{\"S\":6,\"T\":\(time)},";
             }
             if level7SwitchOutlet.isOn  {
                 time = Float(level7TextFieldOutlet.text!) ?? 0
-                content += "{ \"S\": 7, \"T\": \(time)},";
+                content += "{\"S\":7,\"T\":\(time)},";
             }
             if level8SwitchOutlet.isOn  {
                 time = Float(level8TextFieldOutlet.text!) ?? 0
-                content += "{ \"S\": 8, \"T\": \(time)},";
+                content += "{\"S\":8,\"T\":\(time)},";
             }
             if level9SwitchOutlet.isOn  {
                 time = Float(level9TextFieldOutlet.text!) ?? 0
-                content += "{ \"S\": 9, \"T\": \(time)},";
+                content += "{\"S\":9,\"T\":\(time)},";
             }
             if level10SwitchOutlet.isOn  {
                 time = Float(level10TextFieldOutlet.text!) ?? 0
-                content += "{ \"S\": 10, \"T\": \(time)},";
+                content += "{\"S\":10,\"T\":\(time)},";
             }
             content = content.substring(from: 0, to: content.count - 1)
             
             
-            let command = "CMD*RM*{\"\"ST\": [" + content + "]}#";
-            
+            let command = "CMD*RM*{\"ST\":[" + content + "]}#";
+            print("command", command)
             let len = command.count;
-            let count = Int( ceil(Double(len / 20)))
+            let count = Int( ceil(Double(len) / 20.0))
+            print(len, count)
             for i in 0..<count {
-                let newArray = command.substring(from: i * 20, to: (i + 1) * 20);
+                
+                let to = min(len, (i + 1) * 20)
+                let newArray = command.substring(from: i * 20, to: to);
                 if let data = newArray.data(using: .utf8) {
+                    print(i*20, newArray)
                     blinkyPeripheral.writeLevel(data)
                 }
             }
@@ -197,6 +201,8 @@ class RandomViewController: UITableViewController {
             randomConfig.level9 = level9SwitchOutlet.isOn
             randomConfig.level10 = level10SwitchOutlet.isOn
             Preference.shared.setRandomConfig(randomConfig)
+            print("connected")
+            firebaseLog("Ble connected")
         } else {
             Alerts.showToastError(title: "Error", message: "Ble Not connected")
             firebaseLog("Ble not connected")
@@ -262,12 +268,9 @@ class RandomViewController: UITableViewController {
             level8SwitchOutlet.setOn(randomConfig.level8, animated: false)
             level9SwitchOutlet.setOn(randomConfig.level9, animated: false)
             level10SwitchOutlet.setOn(randomConfig.level10, animated: false)
-            
-            let min = randomConfig.min
-            let max = randomConfig.max
-            
-            
+         
             checkUpdateEnable()
+            firebaseLog("randomViewOnCreate")
         }
     }
     

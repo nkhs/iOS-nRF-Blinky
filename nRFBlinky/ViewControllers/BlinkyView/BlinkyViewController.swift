@@ -40,7 +40,9 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
             randomSwitch.isEnabled = false
         } else {
             if blinkyPeripheral != nil && isUpdate {
-                //                blinkyPeripheral.writeMode(0x2)
+                if let cmd = self.getCommandWithLevel(0) {
+                    blinkyPeripheral.writeLevel(cmd)
+                }
             }
             
             if fromButton {
@@ -193,31 +195,26 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
         
         
         print("adding button notification and led write callback handlers")
-        blinkyPeripheral.setModeCallback { (mode) -> (Void) in
+        blinkyPeripheral.setModeCallback { (modeData) -> (Void) in
+            guard let dataStr = String(data: modeData, encoding: String.Encoding.utf8) else{
+                return
+            }
             DispatchQueue.main.async {
-                switch mode {
-                case 0x01:
+                if dataStr.contains("MM*") {
                     self.isChecked = true
                     self.updateButton(false, true)
-                    self.labelOutlet.isHidden = false
-                    break
-                case 0x02:
+//                    CMD*MM*{"S":1}#
+                    var level = dataStr.replacingOccurrences(of: "CMD*MM*{\"S\":", with: "")
+                    level = level.replacingOccurrences(of: "}#", with: "")
+                    
+                    guard let levelInt = Int(level) else{
+                        return
+                    }
+                    self.btnLevelOutlet.setTitle("Level \(levelInt)", for:.normal)
+                }
+                if dataStr.contains("RM*"){
                     self.isChecked = false
                     self.updateButton(false, true)
-                    self.labelOutlet.isHidden = true
-                    break
-                case 0x03:
-                    self.isCheckedRandom = true
-                    self.updateRandomButton(false, true)
-                    self.labelOutlet.isHidden = true
-                    break
-                case 0x04:
-                    self.isCheckedRandom = false
-                    self.updateRandomButton(false, true)
-                    self.labelOutlet.isHidden = true
-                    break
-                default:self.labelOutlet.isHidden = true
-                    break
                 }
             }
         }
@@ -266,7 +263,7 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
         //        if blinkyPeripheral.basePeripheral.state == .connected {
         //            centralManager.cancelPeripheralConnection(blinkyPeripheral.basePeripheral)
         //        }
-        
+        firebaseLog("blinkViewOnCreate")
         super.viewDidDisappear(animated)
     }
     

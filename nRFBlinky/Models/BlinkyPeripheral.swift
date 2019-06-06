@@ -26,7 +26,7 @@ class BlinkyPeripheral: NSObject, CBPeripheralDelegate {
     
     //MARK: - Callback handlers
     private var levelCallbackHandler : ((UInt8) -> (Void))?
-    private var modeChangedHandler : ((UInt8) -> (Void))?
+    private var modeChangedHandler : ((Data) -> (Void))?
     
     //MARK: - Services and Characteristic properties
     //
@@ -48,7 +48,7 @@ class BlinkyPeripheral: NSObject, CBPeripheralDelegate {
         levelCallbackHandler = aCallbackHandler
     }
     
-    public func setModeCallback(aCallbackHandler: @escaping (UInt8) -> (Void)) {
+    public func setModeCallback(aCallbackHandler: @escaping (Data) -> (Void)) {
         modeChangedHandler = aCallbackHandler
     }
     
@@ -85,14 +85,18 @@ class BlinkyPeripheral: NSObject, CBPeripheralDelegate {
     }
     
     public func didReceiveLevelValue(_ aValue: Data) {
+        if aValue.count == 0 {
+            print("received 0")
+            return
+        }
         print("level value received \(aValue[0])")
-        levelCallbackHandler?(aValue[0])
+//        levelCallbackHandler?(aValue[0])
         
     }
     
     public func didReceiveModeNotificationWithValue(_ aValue: Data) {
-        print("Button value changed to: \(aValue[0])")
-        modeChangedHandler?(aValue[0])
+//        print("Button value changed to: \(aValue[0])")
+        modeChangedHandler?(aValue)
     }
     
     public func writeLevel(_ byte:Data) {
@@ -146,7 +150,12 @@ class BlinkyPeripheral: NSObject, CBPeripheralDelegate {
             }
         } else if characteristic == levelCharacteristic {
             if let aValue = characteristic.value {
-                didReceiveLevelValue(aValue)
+                guard let dataStr = String(data: aValue, encoding: String.Encoding.utf8) else{
+                    return
+                }
+                print("dataStr", dataStr)
+//                didReceiveLevelValue(aValue)
+                didReceiveModeNotificationWithValue(aValue)
             }
         }
     }

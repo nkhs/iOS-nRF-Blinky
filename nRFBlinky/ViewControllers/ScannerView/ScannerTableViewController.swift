@@ -71,6 +71,10 @@ class ScannerTableViewController: UITableViewController, CBCentralManagerDelegat
         return aCell
     }
     
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Select NetKNight"
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         centralManager.stopScan()
         activityIndicator.stopAnimating()

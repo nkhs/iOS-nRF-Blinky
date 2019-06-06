@@ -14,6 +14,8 @@ target 'NetKnight' do
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'DefaultsKit'
+  pod 'Fabric', '~> 1.9.0'
+  pod 'Crashlytics', '~> 3.12.0'
   
   target 'NetKnightTests' do
     inherit! :search_paths

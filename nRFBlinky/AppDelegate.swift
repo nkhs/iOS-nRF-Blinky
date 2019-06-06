@@ -11,6 +11,8 @@ import CoreBluetooth
 import IQKeyboardManagerSwift
 import Firebase
 import FirebaseDatabase
+import Crashlytics
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -24,7 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         
         FirebaseApp.configure()
-        
+        logUser()
+        Fabric.with([Crashlytics.self])
+//
         return true
     }
 
@@ -50,6 +54,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func logUser() {
+        // TODO: Use the current user's information
+        // You can call any combination of these three methods
+        Crashlytics.sharedInstance().setUserEmail("wbit85@gmail.com")
+        Crashlytics.sharedInstance().setUserIdentifier("12345")
+        Crashlytics.sharedInstance().setUserName("Test User")
+    }
 
 }
 var counter = 0
@@ -58,7 +69,7 @@ public func getCurrentMillis() -> Int64 {
 }
 func firebaseLog(_ message:String) {
     let ref = Database.database().reference()
-    ref.child("netKnight").child(getMacAddress()).child("\(getCurrentMillis())_\(counter)").setValue( message)
+    ref.child(getMacAddress()).child("\(getCurrentMillis())_\(counter)").setValue( message)
     counter += 1
 }
 

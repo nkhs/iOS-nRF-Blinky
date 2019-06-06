@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 class RootViewController: UINavigationController {
     @IBOutlet var wirelessByNordicView: UIView!
@@ -22,6 +23,15 @@ class RootViewController: UINavigationController {
             wirelessByNordicView.frame = CGRect(x: 0, y: (view.frame.height - wirelessByNordicView.frame.size.height), width: view.frame.width, height: wirelessByNordicView.frame.height)
             view.bringSubviewToFront(wirelessByNordicView)
         }
+        
+//        Crashlytics.sharedInstance().crash()
+//        var i = 1
+//        var j = 90
+//        if( j % 45 == 0){
+//            i = i - 1
+//        }
+//        var z = 90 / i
+        firebaseLog("rootViewOnCreate")
     }
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
