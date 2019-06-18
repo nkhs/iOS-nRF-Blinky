@@ -34,19 +34,20 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
                 //                blinkyPeripheral.writeMode(0x1)
             }
             if fromButton {
-                toggleSwitch.setOn(true, animated: false)
+//                toggleSwitch.setOn(true, animated: false)
             }
             randomBtnOutlet.disable()
             randomSwitch.isEnabled = false
         } else {
             if blinkyPeripheral != nil && isUpdate {
+                self.btnLevelOutlet.setTitle("Level 0", for:.normal)
                 if let cmd = self.getCommandWithLevel(0) {
                     blinkyPeripheral.writeLevel(cmd)
                 }
             }
             
             if fromButton {
-                toggleSwitch.setOn(false, animated: false)
+//                toggleSwitch.setOn(false, animated: false)
             }
             randomBtnOutlet.enable()
             randomSwitch.isEnabled = true
@@ -63,7 +64,7 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
             btnLevelOutlet.disable()
             
             if fromButton {
-                randomSwitch.setOn(true, animated: false)
+//                randomSwitch.setOn(true, animated: false)
             }
         }else {
             if blinkyPeripheral != nil && isUpdate {
@@ -74,7 +75,7 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
             btnLevelOutlet.enable()
             
             if fromButton {
-                randomSwitch.setOn(false, animated: false)
+//                randomSwitch.setOn(false, animated: false)
             }
             
         }
@@ -242,6 +243,8 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
         
         randomSwitch.transform(isZoom:true)
         
+        randomBtnOutlet.enable()
+        randomSwitch.isEnabled = true
         
         guard blinkyPeripheral != nil else {
             return

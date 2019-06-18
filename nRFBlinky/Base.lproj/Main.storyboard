@@ -210,7 +210,7 @@
                                     <constraint firstAttribute="width" secondItem="06t-wt-G6H" secondAttribute="height" multiplier="69:11" id="NUs-Al-uls"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
-                                <state key="normal" title="Level 10">
+                                <state key="normal" title="Level 0">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
