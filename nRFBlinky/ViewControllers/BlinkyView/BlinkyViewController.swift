@@ -31,10 +31,10 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
     func updateButton(_ isUpdate:Bool = false, _ fromButton:Bool = false){
         if isChecked {
             if blinkyPeripheral != nil && isUpdate {
-                //                blinkyPeripheral.writeMode(0x1)
+                
             }
             if fromButton {
-//                toggleSwitch.setOn(true, animated: false)
+                
             }
             randomBtnOutlet.disable()
             randomSwitch.isEnabled = false
@@ -47,36 +47,79 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
             }
             
             if fromButton {
-//                toggleSwitch.setOn(false, animated: false)
+
             }
             randomBtnOutlet.enable()
             randomSwitch.isEnabled = true
         }
     }
     
-    func updateRandomButton(_ isUpdate:Bool = false, _ fromButton:Bool = false){
+    func updateRandomButton(_ isUpdate:Bool = false){
         if isCheckedRandom {
-            if blinkyPeripheral != nil && isUpdate {
-                //                blinkyPeripheral.writeMode(0x3)
-            }
+      
             toggleSwitch.isEnabled = false
             toggleSwitch.setOn(false, animated: false)
             btnLevelOutlet.disable()
             
-            if fromButton {
-//                randomSwitch.setOn(true, animated: false)
+            if blinkyPeripheral != nil && isUpdate {
+                let random1 = arc4random_uniform(5) + 1;
+                let random2 = arc4random_uniform(5) + 1;
+                
+                let random3 = arc4random_uniform(5) + 6;
+                let random4 = arc4random_uniform(5) + 6;
+                
+                let t1:Float = Float(arc4random_uniform(6)) + 1.0;
+                let t2:Float = Float(arc4random_uniform(6)) + 1.0;
+                let t3:Float = Float(arc4random_uniform(6)) + 1.0;
+                let t4:Float = Float(arc4random_uniform(6)) + 1.0;
+                
+                var content = "";
+                
+                content = content + "\(content){\"S\":\(random1),\"T\":\(t1)},"
+                content = content + "\(content){\"S\":\(random2),\"T\":\(t2)},"
+                content = content + "\(content){\"S\":\(random3),\"T\":\(t3)},"
+                content = content + "\(content){\"S\":\(random4),\"T\":\(t4)}"
+                
+                let command = "CMD*RM*{\"ST\":[" + content + "]}#";
+                print("command", command)
+                let len = command.count;
+                let count = Int( ceil(Double(len) / 20.0))
+                print(len, count)
+                for i in 0..<count {
+                    
+                    let to = min(len, (i + 1) * 20)
+                    let newArray = command.substring(from: i * 20, to: to);
+                    if let data = newArray.data(using: .utf8) {
+                        print(i*20, newArray)
+                        blinkyPeripheral.writeLevel(data)
+                    }
+                }
+                
             }
         }else {
             if blinkyPeripheral != nil && isUpdate {
-                //                blinkyPeripheral.writeMode(0x4)
+                
+                let content = "{\"S\":0,\"T\":0}";
+                
+                let command = "CMD*RM*{\"ST\":[" + content + "]}#";
+                print("command", command)
+                let len = command.count;
+                let count = Int( ceil(Double(len) / 20.0))
+                print(len, count)
+                for i in 0..<count {
+                    
+                    let to = min(len, (i + 1) * 20)
+                    let newArray = command.substring(from: i * 20, to: to);
+                    if let data = newArray.data(using: .utf8) {
+                        print(i*20, newArray)
+                        blinkyPeripheral.writeLevel(data)
+                    }
+                }
             }
             
             toggleSwitch.isEnabled = true
             btnLevelOutlet.enable()
             
-            if fromButton {
-//                randomSwitch.setOn(false, animated: false)
-            }
             
         }
     }
@@ -84,9 +127,7 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
     @IBAction func onTapLevel(_ sender: Any) {
         showLevelList()
     }
-    @IBAction func onToggleRandomStart(_ sender: Any) {
-        print("Random1", randomSwitch.isOn)
-    }
+   
     @IBAction func randomSwitchChanged(_ sender: Any) {
         isCheckedRandom = randomSwitch.isOn
         updateRandomButton(true)
