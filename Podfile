@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+  # platform :ios, '9.0'
 
 target 'NetKnight' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -16,6 +16,7 @@ target 'NetKnight' do
   pod 'DefaultsKit'
   pod 'Fabric', '~> 1.9.0'
   pod 'Crashlytics', '~> 3.12.0'
+  pod 'PopupDialog'
   
   target 'NetKnightTests' do
     inherit! :search_paths

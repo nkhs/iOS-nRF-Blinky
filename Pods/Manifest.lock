@@ -2,6 +2,7 @@ PODS:
   - Crashlytics (3.12.0):
     - Fabric (~> 1.9.0)
   - DefaultsKit (0.0.8)
+  - DynamicBlurView (3.0.1)
   - Fabric (1.9.0)
   - Firebase/Core (5.0.1):
     - Firebase/CoreOnly
@@ -33,6 +34,8 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - PopupDialog (1.0.0):
+    - DynamicBlurView (~> 3.0.1)
   - SwiftMessages (4.1.2)
 
 DEPENDENCIES:
@@ -42,12 +45,14 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - IQKeyboardManagerSwift
+  - PopupDialog
   - SwiftMessages (= 4.1.2)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Crashlytics
     - DefaultsKit
+    - DynamicBlurView
     - Fabric
     - Firebase
     - FirebaseAnalytics
@@ -58,11 +63,13 @@ SPEC REPOS:
     - IQKeyboardManagerSwift
     - leveldb-library
     - nanopb
+    - PopupDialog
     - SwiftMessages
 
 SPEC CHECKSUMS:
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
   DefaultsKit: d4e4271525388e33a17ee6842f2ded78f6892bc7
+  DynamicBlurView: b1df5415f9bd31897549e5d7077e5ec120a4d636
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
   Firebase: d6861c2059d8c32d1e6dd8932e22ada346d90a3a
   FirebaseAnalytics: 19812b49fa5f283dd6b23edf8a14b5d477029ab8
@@ -73,8 +80,9 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 04e8679f85e496bb2c474eeb9284052f1b3c391c
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  PopupDialog: 28f29a1ffe9e1fab32fb258b53d56ca31670e8a2
   SwiftMessages: d81f48c1f8b6bc1dbebdfffe11226f0344f937ca
 
-PODFILE CHECKSUM: b56a7f328c47ce5c135eb402b22a757c530a345b
+PODFILE CHECKSUM: 333187a183d191f8d644d71ea5dc2d79c5a3e40a
 
 COCOAPODS: 1.6.1

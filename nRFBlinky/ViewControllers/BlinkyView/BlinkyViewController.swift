@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreBluetooth
+import PopupDialog
 
 class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
     
@@ -18,6 +19,26 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
         updateButton(true)
     }
     
+    @IBAction func onTapInfoButton(_ sender: Any) {
+        
+        // Prepare the popup assets
+        let title = "Information"
+        let message = "Random Mode ON: four levels will randomly alternate at varied times. For new random levels, turn Random Mode OFF and back ON.\nCustomize: select your own settings for level/time spent at each level and press \'Update\'."
+        let image = UIImage(named: "info_small")
+        
+        // Create the dialog
+        let popup = PopupDialog(title: title, message: message)
+        
+        // Create buttons
+        let buttonOne = CancelButton(title: "OK") {
+            print("You canceled the car dialog.")
+        }
+       
+        popup.addButtons([buttonOne])
+        
+        // Present dialog
+        self.present(popup, animated: true, completion: nil)
+    }
     @IBOutlet weak var randomSwitch: UISwitch!
     @IBOutlet weak var randomBtnOutlet: UIButton!
     @IBOutlet weak var toggleSwitch: UISwitch!
@@ -237,29 +258,29 @@ class BlinkyViewController: UIViewController, CBCentralManagerDelegate {
         
         
         print("adding button notification and led write callback handlers")
-        blinkyPeripheral.setModeCallback { (modeData) -> (Void) in
-            guard let dataStr = String(data: modeData, encoding: String.Encoding.utf8) else{
-                return
-            }
-            DispatchQueue.main.async {
-                if dataStr.contains("MM*") {
-                    self.isChecked = true
-                    self.updateButton(false, true)
-//                    CMD*MM*{"S":1}#
-                    var level = dataStr.replacingOccurrences(of: "CMD*MM*{\"S\":", with: "")
-                    level = level.replacingOccurrences(of: "}#", with: "")
-                    
-                    guard let levelInt = Int(level) else{
-                        return
-                    }
-                    self.btnLevelOutlet.setTitle("Level \(levelInt)", for:.normal)
-                }
-                if dataStr.contains("RM*"){
-                    self.isChecked = false
-                    self.updateButton(false, true)
-                }
-            }
-        }
+//        blinkyPeripheral.setModeCallback { (modeData) -> (Void) in
+//            guard let dataStr = String(data: modeData, encoding: String.Encoding.utf8) else{
+//                return
+//            }
+//            DispatchQueue.main.async {
+//                if dataStr.contains("MM*") {
+//                    self.isChecked = true
+//                    self.updateButton(false, true)
+////                    CMD*MM*{"S":1}#
+//                    var level = dataStr.replacingOccurrences(of: "CMD*MM*{\"S\":", with: "")
+//                    level = level.replacingOccurrences(of: "}#", with: "")
+//                    
+//                    guard let levelInt = Int(level) else{
+//                        return
+//                    }
+//                    self.btnLevelOutlet.setTitle("Level \(levelInt)", for:.normal)
+//                }
+//                if dataStr.contains("RM*"){
+//                    self.isChecked = false
+//                    self.updateButton(false, true)
+//                }
+//            }
+//        }
         
         blinkyPeripheral.setLevelCallback { (level) -> (Void) in
             DispatchQueue.main.async {

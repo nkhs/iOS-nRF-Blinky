@@ -217,12 +217,6 @@
                                     <action selector="onTapLevel:" destination="Pmi-R9-N1c" eventType="touchUpInside" id="DO2-0E-xzr"/>
                                 </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To control motor with app, rotate dial in motor tube until it clicks into the OFF position" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PmU-Aq-abH">
-                                <rect key="frame" x="15" y="434.33333333333337" width="345" height="38.333333333333314"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="feu-Fc-bQ3">
                                 <rect key="frame" x="293" y="256.33333333333331" width="51" height="31"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -275,16 +269,34 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pub-Z0-WZz" userLabel="Button info">
+                                <rect key="frame" x="305" y="424.33333333333337" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="Prd-VQ-onL"/>
+                                    <constraint firstAttribute="height" constant="40" id="gaV-CP-NcO"/>
+                                </constraints>
+                                <state key="normal" image="info"/>
+                                <connections>
+                                    <action selector="onTapInfoButton:" destination="Pmi-R9-N1c" eventType="touchUpInside" id="t5R-Sk-zwE"/>
+                                </connections>
+                            </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To control motor with app, rotate dial in motor tube until it clicks into the OFF position" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PmU-Aq-abH">
+                                <rect key="frame" x="15" y="469.33333333333337" width="345" height="38.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="wcz-ZU-BUJ" firstAttribute="trailing" secondItem="pub-Z0-WZz" secondAttribute="trailing" constant="30" id="3Ln-Co-8Cj"/>
+                            <constraint firstItem="pub-Z0-WZz" firstAttribute="top" secondItem="yRG-P0-Srd" secondAttribute="bottom" constant="10" id="6BS-Og-1A4"/>
                             <constraint firstItem="yRG-P0-Srd" firstAttribute="top" secondItem="06t-wt-G6H" secondAttribute="bottom" constant="20" id="Cic-2h-6HY"/>
                             <constraint firstItem="06t-wt-G6H" firstAttribute="centerX" secondItem="wcz-ZU-BUJ" secondAttribute="centerX" id="DQV-em-0HR"/>
                             <constraint firstItem="Baw-p2-Hb9" firstAttribute="top" secondItem="06t-wt-G6H" secondAttribute="bottom" constant="23.666666666666686" id="HtB-lr-cgy"/>
                             <constraint firstItem="Baw-p2-Hb9" firstAttribute="leading" secondItem="wcz-ZU-BUJ" secondAttribute="leading" constant="20" id="Ivd-EY-XBm"/>
                             <constraint firstItem="PmU-Aq-abH" firstAttribute="leading" secondItem="06t-wt-G6H" secondAttribute="leading" id="Mjo-ax-gYJ"/>
                             <constraint firstItem="qaU-nh-qxT" firstAttribute="top" secondItem="wcz-ZU-BUJ" secondAttribute="top" constant="20" id="NTo-Kw-YXX"/>
-                            <constraint firstItem="PmU-Aq-abH" firstAttribute="top" secondItem="yRG-P0-Srd" secondAttribute="bottom" constant="20" id="V6V-Lf-MAe"/>
                             <constraint firstItem="dbI-w5-1R2" firstAttribute="top" secondItem="qaU-nh-qxT" secondAttribute="bottom" constant="20" id="XBt-91-dW5"/>
                             <constraint firstItem="wcz-ZU-BUJ" firstAttribute="trailing" secondItem="qaU-nh-qxT" secondAttribute="trailing" constant="15" id="Z7g-de-vxF"/>
                             <constraint firstItem="qaU-nh-qxT" firstAttribute="leading" secondItem="wcz-ZU-BUJ" secondAttribute="leading" constant="15" id="aY9-OR-OVJ"/>
@@ -293,6 +305,7 @@
                             <constraint firstItem="feu-Fc-bQ3" firstAttribute="trailing" secondItem="06t-wt-G6H" secondAttribute="trailing" constant="-18" id="fhZ-gD-AcD"/>
                             <constraint firstItem="wcz-ZU-BUJ" firstAttribute="trailing" secondItem="icU-Pt-zLe" secondAttribute="trailing" constant="33" id="g8O-Ae-xcy"/>
                             <constraint firstItem="06t-wt-G6H" firstAttribute="leading" secondItem="qaU-nh-qxT" secondAttribute="leading" id="k5n-dA-dGO"/>
+                            <constraint firstItem="PmU-Aq-abH" firstAttribute="top" secondItem="pub-Z0-WZz" secondAttribute="bottom" constant="5" id="khe-4K-9mq"/>
                             <constraint firstItem="icU-Pt-zLe" firstAttribute="leading" secondItem="yRG-P0-Srd" secondAttribute="trailing" constant="20" id="nuK-dU-Vxe"/>
                             <constraint firstItem="PmU-Aq-abH" firstAttribute="trailing" secondItem="06t-wt-G6H" secondAttribute="trailing" id="oQg-Gm-UHg"/>
                             <constraint firstItem="06t-wt-G6H" firstAttribute="top" secondItem="dbI-w5-1R2" secondAttribute="bottom" constant="25" id="sNe-WM-7I8"/>
@@ -893,6 +906,7 @@
     </scenes>
     <resources>
         <image name="ic_bluetooth_searching_48pt" width="48" height="48"/>
+        <image name="info" width="512" height="512"/>
         <image name="net_knights_logo" width="2246" height="1440"/>
         <image name="rssi_4" width="170.66667175292969" height="170.66667175292969"/>
     </resources>
